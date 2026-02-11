@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="video.css" />
+</head>
+<body>
+
+  <div class="video-container">
+    <video id="welcomeVideo" autoplay muted playsinline preload="auto">
+      <source src="media/video2.mp4" type="video/mp4">
+    </video>
+
+<button class="button2" id="clickPrompt">
+  <img src="media/play.png" alt="Teruskan">
+</button>
+
+
+
+    <div class="tap-layer" id="tapLayer"></div>
+  </div>
+
+<script>
+  const video = document.getElementById("welcomeVideo");
+  const prompt = document.getElementById("clickPrompt");
+  const tapLayer = document.getElementById("tapLayer");
+
+  const PAUSE_AT = 9.2; 
+  const FINAL_PAUSE_AT = 18.3;
+
+  let pausedOnce = false;
+  let finalPaused = false;
+
+ 
+  function checkTime() {
+    if (pausedOnce) return;
+
+    if (video.currentTime >= PAUSE_AT) {
+      pausedOnce = true;
+
+      video.pause();
+      showPrompt();
+
+      video.removeEventListener("timeupdate", checkTime);
+    }
+  }
+
+  video.addEventListener("timeupdate", checkTime);
+
+
+function checkTime() {
+  
+  if (!pausedOnce && video.currentTime >= PAUSE_AT) {
+    pausedOnce = true;
+    video.pause();
+    showPrompt();
+    return;
+  }
+
+
+  if (pausedOnce && !finalPaused && video.currentTime >= FINAL_PAUSE_AT) {
+    finalPaused = true;
+    video.pause();
+    showPrompt();
+    return;
+  }
+}
+
+
+
+function onContinue(e) {
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  hidePrompt();
+
+
+  if (finalPaused) {
+    window.location.href = "index.html";
+    return;
+  }
+
+ 
+  video.play().catch(() => {});
+}
+
+
+prompt.addEventListener("click", onContinue);
+
+
+tapLayer.addEventListener("click", onContinue);
+
+
+
+  function showPrompt() {
+    prompt.classList.add("show");
+    tapLayer.classList.add("active");
+  }
+
+  function hidePrompt() {
+    prompt.classList.remove("show");
+    tapLayer.classList.remove("active");
+  }
+</script>
+
+
+</body>
+</html>

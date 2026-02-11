@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSVP Confirmation</title>
+  <link rel="stylesheet" href="confirm.css" />
+</head>
+<body>
+
+  <div class="phone-shell">
+    <div class="app">
+
+
+      <section class="page page-rsvp">
+        <div class="section-card rsvp-card">
+          <h2 class="rsvp-title">Kehadiran Jemputan</h2>
+
+          <form class="rsvp-form">
+
+
+            <div class="formbold-mb-5">
+              <label for="name" class="formbold-form-label">Nama</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Nama penuh"
+                class="formbold-form-input"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+
+            <div class="formbold-mb-5">
+              <label for="phone" class="formbold-form-label">Nombor Telefon</label>
+              <input
+                type="tel"
+                id="phone"
+                placeholder="0123456789"
+                class="formbold-form-input phone-input"
+                inputmode="numeric"
+                autocomplete="tel"
+                required
+              />
+            </div>
+
+
+            <div class="formbold-mb-5">
+              <label class="formbold-form-label">Bilangan Tetamu</label>
+
+              <div class="formbold-like-input" role="group" aria-label="Bilangan Tetamu">
+                <div class="radio-group">
+                  <label class="radio-line">
+                    <input type="radio" name="guests" value="1" required />
+                    Saya sahaja
+                  </label>
+
+                  <label class="radio-line">
+                    <input type="radio" name="guests" value="plus" />
+                    Saya +
+                    <input
+                      type="number"
+                      class="guest-count"
+                      min="1"
+                      placeholder="___"
+                      disabled
+                      aria-label="Jumlah tetamu tambahan"
+                    />
+                    orang
+                  </label>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="formbold-mb-5">
+              <label class="formbold-form-label">Hadir Dari Pihak</label>
+
+              <div class="formbold-like-input" role="group" aria-label="Hadir dari pihak">
+                <div class="radio-group">
+                  <label class="radio-line">
+                    <input type="radio" name="side" value="lelaki" required />
+                    Pihak Pengantin Lelaki
+                  </label>
+
+                  <label class="radio-line">
+                    <input type="radio" name="side" value="perempuan" />
+                    Pihak Pengantin Perempuan
+                  </label>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="button-borders">
+              <button type="submit" class="primary-button">
+                Hantar Kehadiran
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+
+  <div class="toast-overlay" id="successOverlay" hidden>
+    <!-- From Uiverse.io by 00Kubi (buttons removed) -->
+    <div class="notifications-container">
+      <div class="success">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+              class="success-svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                fill-rule="evenodd"
+              ></path>
+            </svg>
+          </div>
+
+          <div class="success-prompt-wrap">
+            <p class="success-prompt-heading">
+              Kehadiran Berjaya
+              <span class="checkmark">✓</span>
+            </p>
+            <div class="success-prompt-prompt">
+              <p>Terima kasih. Kehadiran anda telah direkodkan.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="toast-overlay" id="alreadyOverlay" hidden>
+  <div class="notifications-container">
+    <div class="success">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+            class="success-svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-11.5a.75.75 0 10-1.5 0v.5a.75.75 0 001.5 0v-.5zM9 9.25a.75.75 0 011.5 0v5a.75.75 0 01-1.5 0v-5z"
+            />
+          </svg>
+        </div>
+
+        <div class="success-prompt-wrap">
+          <p class="success-prompt-heading">
+            Anda sudah hantar RSVP
+          </p>
+
+          <div class="success-prompt-prompt">
+            <p>Adakah anda ingin isi semula?</p>
+          </div>
+
+
+          <div class="success-button-container">
+            <button class="success-button-main" type="button" id="fillAgainBtn">
+              Isi semula
+            </button>
+            <button class="success-button-secondary" type="button" id="cancelFillBtn">
+              Batal
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const APPS_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbwNV2bIfunW2ZnZiIGPFrL56fsbX3jR3_eSqqzKvZCHok6lihKY3u4jmJZuHvhzNGjW/exec";
+
+  const form = document.querySelector(".rsvp-form");
+  const nameInput = document.getElementById("name");
+  const phoneInput = document.getElementById("phone");
+  const guestInput = document.querySelector(".guest-count");
+  const overlay = document.getElementById("successOverlay");
+
+  let isSubmitting = false;
+  const submitBtn = document.querySelector(".primary-button");
+  let originalBtnText = "";
+
+function resetSuccessPopup() {
+  overlay.hidden = true; 
+  const submitBtn = document.querySelector(".primary-button");
+  if (submitBtn) submitBtn.disabled = false; 
+}
+
+
+resetSuccessPopup();
+
+
+window.addEventListener("pageshow", resetSuccessPopup);
+
+
+  function toTitleCase(str) {
+    return str
+      .toLowerCase()
+      .replace(/\s+/g, " ")
+      .trim()
+      .split(" ")
+      .filter(Boolean)
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
+  }
+
+  function digitsOnly(value) {
+    return value.replace(/\D+/g, "");
+  }
+
+  function getTotalGuests() {
+    const selected = document.querySelector('input[name="guests"]:checked');
+    if (!selected) return null;
+    if (selected.value === "1") return 1;
+
+    const extra = parseInt(guestInput.value, 10);
+    if (Number.isNaN(extra) || extra < 1) return null;
+    return 1 + extra;
+  }
+
+  function getSideValue() {
+    const selected = document.querySelector('input[name="side"]:checked');
+    if (!selected) return null;
+    if (selected.value === "lelaki") return "Lelaki";
+    if (selected.value === "perempuan") return "Perempuan";
+    return selected.value;
+  }
+
+
+  nameInput.addEventListener("blur", () => {
+    nameInput.value = toTitleCase(nameInput.value);
+  });
+
+
+  phoneInput.addEventListener("input", () => {
+    phoneInput.value = digitsOnly(phoneInput.value);
+  });
+
+
+  guestInput.addEventListener("input", () => {
+    guestInput.value = digitsOnly(guestInput.value);
+    if (guestInput.value === "0") guestInput.value = "";
+  });
+
+
+  document.querySelectorAll('input[name="guests"]').forEach(radio => {
+    radio.addEventListener("change", () => {
+      if (radio.value === "plus") {
+        guestInput.disabled = false;
+        guestInput.focus();
+      } else {
+        guestInput.disabled = true;
+        guestInput.value = "";
+      }
+    });
+  });
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+
+  if (isSubmitting) return;
+  isSubmitting = true;
+
+if (submitBtn) {
+  originalBtnText = submitBtn.textContent;   
+  submitBtn.textContent = "Menghantar…";     
+  submitBtn.disabled = true;
+  submitBtn.style.opacity = "0.7";
+  submitBtn.style.pointerEvents = "none";
+}
+
+
+
+    const nama = toTitleCase(nameInput.value);
+    const nomborTelefon = digitsOnly(phoneInput.value);
+    const bilanganTetamu = getTotalGuests();
+    const hadirDariPihak = getSideValue();
+
+    if (!nama) return alert("Sila isi Nama.");
+    if (!nomborTelefon) return alert("Sila isi Nombor Telefon.");
+    if (!bilanganTetamu) return alert('Sila pilih bilangan tetamu (dan isi nombor jika pilih "Saya +").');
+    if (!hadirDariPihak) return alert("Sila pilih Hadir Dari Pihak.");
+
+    const payload = { nama, nomborTelefon, bilanganTetamu, hadirDariPihak };
+
+    try {
+      const res = await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload),
+      });
+
+      const text = await res.text();
+      if (!res.ok) throw new Error(text);
+
+  
+      overlay.hidden = false;
+
+      localStorage.setItem(SUBMIT_FLAG_KEY, "1");
+
+   
+      const submitBtn = document.querySelector(".primary-button");
+      if (submitBtn) submitBtn.disabled = true;
+
+   
+      setTimeout(() => {
+        window.location.href = "close.html";
+      }, 2000);
+
+} catch (err) {
+  console.error(err);
+  alert("Gagal hantar. Sila cuba lagi.");
+
+  isSubmitting = false;
+  if (submitBtn) {
+    submitBtn.textContent = originalBtnText; 
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = "";
+    submitBtn.style.pointerEvents = "";
+  }
+}
+
+
+  });
+
+  const alreadyOverlay = document.getElementById("alreadyOverlay");
+const fillAgainBtn = document.getElementById("fillAgainBtn");
+const cancelFillBtn = document.getElementById("cancelFillBtn");
+
+const SUBMIT_FLAG_KEY = "rsvp_submitted_v1";
+
+function hideAlreadyModal() {
+  alreadyOverlay.setAttribute("hidden", "");
+}
+
+function showAlreadyModal() {
+  alreadyOverlay.removeAttribute("hidden");
+}
+
+
+function checkAlreadySubmitted() {
+  if (localStorage.getItem(SUBMIT_FLAG_KEY) === "1") {
+    showAlreadyModal();
+  } else {
+    hideAlreadyModal();
+  }
+}
+
+window.addEventListener("DOMContentLoaded", checkAlreadySubmitted);
+window.addEventListener("pageshow", checkAlreadySubmitted);
+
+
+fillAgainBtn.addEventListener("click", () => {
+  localStorage.removeItem(SUBMIT_FLAG_KEY);
+  hideAlreadyModal();
+
+
+  const submitBtn = document.querySelector(".primary-button");
+  if (submitBtn) submitBtn.disabled = false;
+
+
+  form.reset();
+  guestInput.disabled = true;
+  guestInput.value = "";
+});
+
+cancelFillBtn.addEventListener("click", () => {
+  window.location.href = "close.html";
+});
+
+
+</script>
+
+</body>
+</html>

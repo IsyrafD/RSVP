@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Countdown</title>
+  <link rel="stylesheet" href="close.css" />
+</head>
+<body>
+
+  <div class="phone-shell">
+    <div class="app">
+
+
+      <section class="page page-countdown">
+        <div class="section-card countdown-card">
+
+          <div class="countdown-header">
+            <p class="small-title">Menghitung Hari</p>
+            <h2 class="big-title">2 Mei 2026</h2>
+          </div>
+
+          <div class="countdown-grid" aria-label="Countdown timer">
+            <div class="time-box">
+              <div class="num" id="days">00</div>
+              <div class="label">Hari</div>
+            </div>
+            <div class="time-box">
+              <div class="num" id="hours">00</div>
+              <div class="label">Jam</div>
+            </div>
+            <div class="time-box">
+              <div class="num" id="minutes">00</div>
+              <div class="label">Minit</div>
+            </div>
+            <div class="time-box">
+              <div class="num" id="seconds">00</div>
+              <div class="label">Saat</div>
+            </div>
+          </div>
+
+          <p class="status" id="status"></p>
+
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    const target = new Date(2026, 4, 2, 0, 0, 0); 
+
+    const elDays = document.getElementById("days");
+    const elHours = document.getElementById("hours");
+    const elMinutes = document.getElementById("minutes");
+    const elSeconds = document.getElementById("seconds");
+    const elStatus = document.getElementById("status");
+
+    const pad2 = (n) => String(n).padStart(2, "0");
+
+    function tick() {
+      const now = new Date();
+      let diff = target.getTime() - now.getTime();
+
+      if (diff <= 0) {
+renderDigits(elDays, 0);
+renderDigits(elHours, 0);
+renderDigits(elMinutes, 0);
+renderDigits(elSeconds, 0);
+        elStatus.textContent = "D-Day";
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff / 1000);
+
+      const days = Math.floor(totalSeconds / (60 * 60 * 24));
+      const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+      const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+      const seconds = totalSeconds % 60;
+
+renderDigits(elDays, days);
+renderDigits(elHours, hours);
+renderDigits(elMinutes, minutes);
+renderDigits(elSeconds, seconds);
+
+
+      elStatus.textContent = "";
+      requestAnimationFrame(() => {});
+    }
+
+    tick();
+    setInterval(tick, 1000);
+
+    function renderDigits(el, value) {
+  const s = String(value).padStart(2, "0");
+  el.innerHTML = s.split("").map(ch => `<span class="digit">${ch}</span>`).join("");
+}
+
+  </script>
+
+</body>
+</html>
