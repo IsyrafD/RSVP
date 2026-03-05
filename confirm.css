@@ -13,6 +13,12 @@ html, body {
   font-family: Georgia, serif;
 }
 
+@font-face {
+  font-family: "GreatVibes";
+  src: url("fonts/GreatVibes.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
   --font-body: Georgia, serif;
@@ -79,13 +85,13 @@ body {
 
 
 .rsvp-title {
-  font-family: var(--font-title);   
-  font-size: 25px;
-  font-weight: 600;
-  color: var(--font-color);
+  font-family: "GreatVibes", cursive;
+  font-size: 35px; 
+  font-weight: normal;
+  color: rgba(70, 50, 13);
   text-align: center;
   margin-bottom: 16px;
-  letter-spacing: 0;
+  letter-spacing: normal;
 }
 
 
