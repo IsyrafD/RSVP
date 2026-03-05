@@ -16,8 +16,19 @@ html, body {
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Weddingday";
+  src: url("fonts/Weddingday.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
-
+@font-face {
+  font-family: "GreatVibes";
+  src: url("fonts/GreatVibes.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
   display: grid;
@@ -128,6 +139,25 @@ body {
   margin: 6px 0;
   color: rgba(70, 50, 13);
 }
+
+
+.couple2 {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; 
+  flex-wrap: wrap; 
+}
+
+.page-footer .couple2-name {
+  font-family: "Weddingday", cursive;
+  font-size: 30px;
+  line-height: 1.1;
+  color: rgba(70, 50, 13);
+  margin: 12px 0;
+}
+
 
 /* SECTION 2 (Details layout)*/
 
@@ -361,10 +391,15 @@ body {
 }
 
 .page-contact .footer-title {
-  font-size: 15px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: "GreatVibes", cursive;
+  font-size: 30px;
+  font-weight: normal;
+  line-height: 1;
+  color: rgba(70, 50, 13);
+  text-transform: none; 
+  letter-spacing: normal; 
   text-align: center;
+  margin-bottom: 4px;
 }
 
 .page-contact .footer-text {
@@ -520,3 +555,12 @@ body {
   z-index: 0;
 }
 
+.detail-row strong {
+  font-family: "GreatVibes", cursive;
+  font-weight: normal; 
+  font-size: 30px; 
+  line-height: 1;
+  color: rgba(70, 50, 13);
+  display: block;
+  margin-bottom: 4px; 
+}
