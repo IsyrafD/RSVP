@@ -8,6 +8,11 @@
 </head>
 <body>
 
+<audio id="bgMusic" loop>
+  <source src="media/music.mp3" type="audio/mpeg">
+</audio>
+
+
   <div class="phone-shell">
     <div class="app">
 
@@ -28,7 +33,7 @@
           <div class="couple">
             <p class="couple-name">Imran Syahir</p>
             <p class="couple-amp">&amp;</p>
-            <p class="couple-name">Anis Hanani</p>
+            <p class="couple-name">Anis Hanini</p>
           </div>
         </div>
       </section>
@@ -38,29 +43,27 @@
   <div class="section-card details-card">
 
 
-    <div class="detail-row">
-      <div class="icon">
-        <img src="media/calendar2.png" alt="">
+<div class="detail-row">
+      <div class="detail-value">
+        <strong>Tarikh</strong>
       </div>
       <div class="detail-value">
         02 Mei 2026
       </div>
     </div>
-
  
     <div class="detail-row">
-      <div class="icon">
-        <img src="media/time.png" alt="">
+      <div class="detail-value">
+        <strong>Masa</strong>
       </div>
       <div class="detail-value">
-        12 pm – 4 pm
+        11 am – 4 pm
       </div>
     </div>
 
-
     <div class="detail-row">
-      <div class="icon">
-        <img src="media/placeholder.png" alt="">
+      <div class="detail-value">
+        <strong>Tempat</strong>
       </div>
       <div class="detail-value">
         Puteri Palmera Glass Hall<br>
@@ -109,8 +112,13 @@
 
     <p>
       Ya Allah, satukanlah hati<br>
-      <strong>IMRAN SYAHIR &amp; ANIS HANINI</strong>
     </p>
+
+          <div class="couple2">
+            <p class="couple2-name">Imran Syahir</p>
+            <p class="couple-amp">&amp;</p>
+            <p class="couple2-name">Anis Hanini</p>
+          </div>
 
     <p>
       Seperti Engkau satukan hati Adam dan Hawa, Yusof dan Zulaikha
@@ -162,8 +170,24 @@
 
     </div>
   </div>
+  
+  <script>
+  const music = document.getElementById("bgMusic");
+
+  const wasPlaying = localStorage.getItem("musicPlaying");
+  const savedTime = localStorage.getItem("musicTime");
+
+  if (wasPlaying) {
+    music.currentTime = savedTime || 0;
+    music.play().catch(() => {});
+  }
+
+  // Keep saving position
+  setInterval(() => {
+    localStorage.setItem("musicTime", music.currentTime);
+  }, 1000);
+</script>
+
+
 </body>
 </html>
-
-
-
