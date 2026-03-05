@@ -9,6 +9,11 @@
 </head>
 <body>
 
+  <audio id="bgMusic" loop>
+  <source src="media/music.mp3" type="audio/mpeg">
+</audio>
+
+
   <div class="phone-shell">
     <div class="app">
 
@@ -96,6 +101,22 @@ renderDigits(elSeconds, seconds);
   const s = String(value).padStart(2, "0");
   el.innerHTML = s.split("").map(ch => `<span class="digit">${ch}</span>`).join("");
 }
+
+  const music = document.getElementById("bgMusic");
+
+  const wasPlaying = localStorage.getItem("musicPlaying");
+  const savedTime = localStorage.getItem("musicTime");
+
+  if (wasPlaying) {
+    music.currentTime = savedTime || 0;
+    music.play().catch(() => {});
+  }
+
+  // Keep saving position
+  setInterval(() => {
+    localStorage.setItem("musicTime", music.currentTime);
+  }, 1000);
+
 
   </script>
 
