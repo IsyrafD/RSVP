@@ -9,8 +9,13 @@
 
   <div class="video-container">
     <video id="welcomeVideo" autoplay muted playsinline preload="auto">
-      <source src="media/video2.mp4" type="video/mp4">
+      <source src="media/VideoIntro.mp4" type="video/mp4">
     </video>
+
+    <audio id="bgMusic" loop>
+  <source src="media/music.mp3" type="audio/mpeg">
+</audio>
+
 
 <button class="button2" id="clickPrompt">
   <img src="media/play.png" alt="Teruskan">
@@ -26,8 +31,8 @@
   const prompt = document.getElementById("clickPrompt");
   const tapLayer = document.getElementById("tapLayer");
 
-  const PAUSE_AT = 9.2; 
-  const FINAL_PAUSE_AT = 18.3;
+  const PAUSE_AT = 2.9; 
+  const FINAL_PAUSE_AT = 16.3;
 
   let pausedOnce = false;
   let finalPaused = false;
@@ -69,6 +74,8 @@ function checkTime() {
 
 
 
+const music = document.getElementById("bgMusic");
+
 function onContinue(e) {
   if (e) {
     e.preventDefault();
@@ -77,15 +84,32 @@ function onContinue(e) {
 
   hidePrompt();
 
+  if (!music.dataset.started) {
+    let savedTime = localStorage.getItem("musicTime");
+
+  if (!savedTime) {
+    savedTime = 0;
+  }
+
+  music.currentTime = savedTime;
+
+    music.play().catch(() => {});
+    music.dataset.started = "true";
+
+    setInterval(() => {
+      localStorage.setItem("musicTime", music.currentTime);
+      localStorage.setItem("musicPlaying", "true");
+    }, 1000);
+  }
 
   if (finalPaused) {
     window.location.href = "main.html";
     return;
   }
 
- 
   video.play().catch(() => {});
 }
+
 
 
 prompt.addEventListener("click", onContinue);
@@ -109,5 +133,3 @@ tapLayer.addEventListener("click", onContinue);
 
 </body>
 </html>
-
-
