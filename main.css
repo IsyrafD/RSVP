@@ -146,6 +146,9 @@ body {
   color: rgba(70, 50, 13);
 }
 
+.couple2 .couple-amp {
+  margin-left: 12px; /* Pushes the & to the right */
+}
 
 .couple2 {
   margin-top: 12px;
@@ -570,4 +573,5 @@ body {
   display: block;
   margin-bottom: 4px; 
 }
+
 
