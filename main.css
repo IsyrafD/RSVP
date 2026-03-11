@@ -113,12 +113,18 @@ body {
   font-size: 15px;
 }
 
+.invite-card {
+  justify-content: center;
+  padding-bottom: 60px;
+}
+
 .invite-text {
   font-size: 13px;
   line-height: 1.55;
   color: rgba(70, 50, 13);
   text-align: center;
-  margin-top: 10px;
+  margin-top: 25px;
+  margin-bottom: 15px;
 }
 
 .couple {
@@ -564,3 +570,4 @@ body {
   display: block;
   margin-bottom: 4px; 
 }
+
