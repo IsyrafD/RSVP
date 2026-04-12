@@ -3,136 +3,177 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Imran & Anis</title>
   <link rel="stylesheet" href="index.css" />
 </head>
 <body>
 
-  <div class="video-container">
-    <video id="welcomeVideo" autoplay muted playsinline preload="auto">
-      <source src="media/VideoIntro2.mp4" type="video/mp4">
-    </video>
 
-    <audio id="bgMusic" loop>
-  <source src="media/music.mp3" type="audio/mpeg">
-</audio>
+  <div class="phone-shell">
+    <div class="app">
+
+      <!--SECTION 1-->
+      <section class="page page-hero">
+        <div class="section-card invite-card">
+          <p class="parents">
+            DR. MAT ZAMRI HASHIM<br />
+            <span class="amp">&amp;</span><br />
+            WAN MAHIZATUL AZMA RAMLI
+          </p>
+
+          <p class="invite-text">
+            Dengan penuh rasa kesyukuran, kami ingin menjemput Dato'/Datin/Tuan/Puan/Encik/Cik
+            ke Majlis Pernikahan Putera kami
+          </p>
+
+          <div class="couple">
+            <p class="couple-name">Imran Syahir</p>
+            <p class="couple-amp">&amp;</p>
+            <p class="couple-name">Anis Hanini</p>
+          </div>
+        </div>
+      </section>
+
+<!-- SECTION 2  -->
+<section class="page page-details">
+  <div class="section-card details-card">
 
 
-<button class="button2" id="clickPrompt">
-  <img src="media/play.png" alt="Teruskan">
-</button>
-
-
-
-    <div class="tap-layer" id="tapLayer"></div>
-  </div>
-
-<script>
-  const video = document.getElementById("welcomeVideo");
-  const prompt = document.getElementById("clickPrompt");
-  const tapLayer = document.getElementById("tapLayer");
-
-  const PAUSE_AT = 3.2; 
-  const FINAL_PAUSE_AT = 17.9;
-
-  let pausedOnce = false;
-  let finalPaused = false;
-
+<div class="detail-row">
+      <div class="detail-value">
+        <strong>Tarikh</strong>
+      </div>
+      <div class="detail-value">
+        02 Mei 2026
+      </div>
+    </div>
  
-  function checkTime() {
-    if (pausedOnce) return;
+    <div class="detail-row">
+      <div class="detail-value">
+        <strong>Masa</strong>
+      </div>
+      <div class="detail-value">
+        11 am – 4 pm
+      </div>
+    </div>
 
-    if (video.currentTime >= PAUSE_AT) {
-      pausedOnce = true;
+    <div class="detail-row">
+      <div class="detail-value">
+        <strong>Tempat</strong>
+      </div>
+      <div class="detail-value">
+        Puteri Palmera Glass Hall<br>
+        KM 11 Jalan Titi Hj Dris Langgar<br>
+        Alor Setar Kedah<br>
+      </div>
+    </div>
 
-      video.pause();
-      showPrompt();
 
-      video.removeEventListener("timeupdate", checkTime);
-    }
-  }
+<div class="map-actions">
 
-  video.addEventListener("timeupdate", checkTime);
+  <a class="cssbuttons-io waze-btn"
+     href="https://waze.com/ul?q=Puteri%20Palmera%20Glass%20Hall%20Alor%20Setar"
+     target="_blank">
+    <span>
+      <img src="media/waze.png" alt="Waze">
+    </span>
+  </a>
+
+  <a class="cssbuttons-io maps-btn"
+     href="https://www.google.com/maps/search/?api=1&query=Puteri+Palmera+Glass+Hall+Alor+Setar"
+     target="_blank">
+    <span>
+      <img src="media/googlemaps.png" alt="Google Maps">
+    </span>
+  </a>
+
+</div>
 
 
-function checkTime() {
+
+  </div>
+</section>
+
+
+<!-- SECTION 3  -->
+<section class="page page-footer">
+  <div class="section-card content-box">
+
+
+    <img
+      src="media/bismillah.png"
+      alt="Bismillah"
+      class="bismillah"
+    />
+
+    <p>
+      Ya Allah, satukanlah hati<br>
+    </p>
+
+          <div class="couple2">
+            <p class="couple2-name">Imran Syahir</p>
+            <p class="couple-amp">&amp;</p>
+            <p class="couple2-name">Anis Hanini</p>
+          </div>
+
+    <p>
+      Seperti Engkau satukan hati Adam dan Hawa, Yusof dan Zulaikha
+      dan seperti Engkau satukan hati Muhammad S.A.W. dan Siti Khadijah.
+      Satukanlah hati kedua mempelai ini dengan iman, keyakinan
+      dan tawakal kepada-Mu.
+    </p>
+
+    <p>
+      Jadikanlah mereka suami soleh yang sentiasa memimpin dan
+      isteri solehah yang sentiasa membantu.
+      Murahkan rezeki mereka dan kurniakan kepada mereka
+      zuriat yang beriman dan beramal soleh.
+    </p>
+
+    <p>
+      Semoga kehidupan mereka dipenuhi
+      <em>Al-Mawaddah</em> dan <em>Ar-Rahmah</em>
+      di dunia dan akhirat.
+    </p>
+
+  </div>
+</section>
+
+
+
+<!-- SECTION 4 -->
+<section class="page page-contact">
+  <div class="stack">
+
+
+    <div class="section-card content-box">
+      <p class="footer-title">Kehadiran</p>
+
+
+  <div class="button-borders">
+    <a href="confirm.html" class="primary-button">Isi Kehadiran</a>
+  </div>
+      <p class="footer-note">
+        Terima kasih atas kehadiran dan doa anda
+      </p>
+    </div>
+
+
+  </div>
+</section>
+
+
+
+    </div>
+  </div>
   
-  if (!pausedOnce && video.currentTime >= PAUSE_AT) {
-    pausedOnce = true;
-    video.pause();
-    showPrompt();
-    return;
-  }
-
-
-  if (pausedOnce && !finalPaused && video.currentTime >= FINAL_PAUSE_AT) {
-    finalPaused = true;
-    video.pause();
-    showPrompt();
-    return;
-  }
-}
-
-
-
-const music = document.getElementById("bgMusic");
-
-function onContinue(e) {
-  if (e) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  hidePrompt();
-
-  if (!music.dataset.started) {
-    let savedTime = localStorage.getItem("musicTime");
-
-  if (!savedTime) {
-    savedTime = 0;
-  }
-
-  music.currentTime = savedTime;
-
-    music.play().catch(() => {});
-    music.dataset.started = "true";
-
-    setInterval(() => {
-      localStorage.setItem("musicTime", music.currentTime);
-      localStorage.setItem("musicPlaying", "true");
-    }, 1000);
-  }
-
-  if (finalPaused) {
-    window.location.href = "main.html";
-    return;
-  }
-
-  video.play().catch(() => {});
-}
-
-
-
-prompt.addEventListener("click", onContinue);
-
-
-tapLayer.addEventListener("click", onContinue);
-
-
-
-  function showPrompt() {
-    prompt.classList.add("show");
-    tapLayer.classList.add("active");
-  }
-
-  function hidePrompt() {
-    prompt.classList.remove("show");
-    tapLayer.classList.remove("active");
-  }
+<script>
+  // Music logic removed
+  console.log("Welcome to the invitation");
 </script>
 
 
 </body>
 </html>
-
 
 
